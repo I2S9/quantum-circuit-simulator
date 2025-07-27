@@ -10,7 +10,7 @@ import { ArrowRightIcon } from '@heroicons/react/24/solid';
 export default function ChatWidget() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-lg p-4 mb-6">
           <div className="flex items-center justify-between">
@@ -31,7 +31,7 @@ export default function ChatWidget() {
                 <input
                   type="text"
                   placeholder="Ask any question..."
-                  className="w-[500px] px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-sky-400"
+                  className="w-[750px] px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-sky-400"
                 />
               </div>
               <button className="w-10 h-10 bg-sky-400 rounded-full flex items-center justify-center hover:bg-sky-500 transition-colors">
@@ -50,7 +50,7 @@ export default function ChatWidget() {
         </div>
 
         {/* Main Chat Area */}
-        <div className="bg-gradient-to-r from-sky-400 to-blue-600 rounded-3xl p-8">
+        <div className="bg-gradient-to-r from-sky-400 to-blue-600 rounded-3xl p-6">
           <div className="flex flex-col items-center space-y-6">
             {/* Icon Circle */}
             <div className="w-28 h-28 bg-white rounded-full flex items-center justify-center">

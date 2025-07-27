@@ -7,7 +7,7 @@ import {
   InformationCircleIcon,
   UserIcon
 } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 
 const navItems = [
   { id: 'home', label: 'Home', icon: HomeIcon },
@@ -18,6 +18,29 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigation = (itemId: string) => {
+    switch (itemId) {
+      case 'home':
+        router.push('/');
+        break;
+      case 'circuit':
+        router.push('/circuit');
+        break;
+      case 'chat':
+        router.push('/chat');
+        break;
+      case 'info':
+        router.push('/info');
+        break;
+      case 'about':
+        router.push('/about');
+        break;
+    }
+  };
+
   return (
     <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
       <div className="bg-gray-900 rounded-full px-12 py-1 shadow-lg">
@@ -29,6 +52,7 @@ export default function Navbar() {
             return (
               <button
                 key={item.id}
+                onClick={() => handleNavigation(item.id)}
                 className="flex flex-col items-center justify-center cursor-pointer transition-all duration-200 hover:scale-105"
               >
                 <div className="flex flex-col items-center justify-center h-14">
