@@ -6,8 +6,11 @@ import {
   InformationCircleIcon
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import { useRouter } from 'next/navigation';
 
 export default function ChatWidget() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="max-w-6xl mx-auto">
@@ -17,7 +20,7 @@ export default function ChatWidget() {
             {/* Logo and Qubitly - Left */}
             <button 
               className="flex items-center space-x-1 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => console.log('Qubitly logo clicked')}
+              onClick={() => router.push('/')}
             >
               <Image
                 src="/logo.png"
@@ -45,7 +48,7 @@ export default function ChatWidget() {
             {/* Info button - Right */}
             <button 
               className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
-              onClick={() => console.log('Info button clicked')}
+              onClick={() => router.push('/info')}
             >
               <InformationCircleIcon className="w-5 h-5 text-black" />
             </button>
@@ -53,15 +56,15 @@ export default function ChatWidget() {
         </div>
 
         {/* Main Chat Area */}
-        <div className="bg-gradient-to-r from-sky-400 to-blue-600 rounded-3xl p-6">
+        <div className="bg-gradient-to-r from-sky-400 to-blue-600 rounded-3xl p-6 max-w-[1100px] mx-auto">
           <div className="flex flex-col items-center space-y-6">
             {/* Icon Circle */}
-            <div className="w-28 h-28 bg-white rounded-full flex items-center justify-center">
+            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center">
               <Image
                 src="/logo.png"
                 alt="Qubitly Logo"
-                width={100}
-                height={100}
+                width={80}
+                height={80}
                 className="rounded-full"
               />
             </div>
@@ -70,13 +73,13 @@ export default function ChatWidget() {
             <div className="flex items-center justify-between w-full mt-4">
               {/* Text - Left */}
               <div className="text-white">
-                <h2 className="text-2xl font-bold">Qubitly helps you learn quantum computing!</h2>
+                <h2 className="text-2xl font-medium">Qubitly helps you learn quantum computing!</h2>
               </div>
               
               {/* Start Button - Right */}
               <button 
                 className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-50 transition-colors flex items-center space-x-2 cursor-pointer"
-                onClick={() => console.log('Start button clicked')}
+                onClick={() => router.push('/chat')}
               >
                 <span className="font-semibold">Start</span>
                 <ArrowRightIcon className="w-5 h-5" />

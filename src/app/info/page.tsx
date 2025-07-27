@@ -5,8 +5,11 @@ import {
   PaperAirplaneIcon, 
   InformationCircleIcon
 } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/navigation';
 
 export default function InfoPage() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen bg-white p-8">
       <div className="max-w-6xl mx-auto">
@@ -16,7 +19,7 @@ export default function InfoPage() {
             {/* Logo and Qubitly - Left */}
             <button 
               className="flex items-center space-x-1 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => console.log('Qubitly logo clicked')}
+              onClick={() => router.push('/')}
             >
               <Image
                 src="/logo.png"
@@ -35,7 +38,7 @@ export default function InfoPage() {
             {/* Info button - Right */}
             <button 
               className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
-              onClick={() => console.log('Info button clicked')}
+              onClick={() => router.push('/info')}
             >
               <InformationCircleIcon className="w-5 h-5 text-black" />
             </button>
