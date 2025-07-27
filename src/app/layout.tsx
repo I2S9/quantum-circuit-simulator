@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Quantum Circuit Simulator",
+  title: "Qubitly",
   description: "Advanced quantum circuit simulation platform",
 };
 
