@@ -9,13 +9,16 @@ import { ArrowRightIcon } from '@heroicons/react/24/solid';
 
 export default function ChatWidget() {
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-white p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-lg p-4 mb-6">
           <div className="flex items-center justify-between">
             {/* Logo and Qubitly - Left */}
-            <div className="flex items-center space-x-1">
+            <button 
+              className="flex items-center space-x-1 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => console.log('Qubitly logo clicked')}
+            >
               <Image
                 src="/logo.png"
                 alt="Qubitly Logo"
@@ -23,7 +26,7 @@ export default function ChatWidget() {
                 height={40}
               />
               <span className="font-bold text-lg text-black">Qubitly</span>
-            </div>
+            </button>
             
             {/* Input and send button - Center */}
             <div className="flex items-center space-x-3">
