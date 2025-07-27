@@ -40,8 +40,11 @@ export default function ChatWidget() {
             </div>
             
             {/* Info button - Right */}
-            <button className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors">
-              <InformationCircleIcon className="w-5 h-5 text-sky-400" />
+            <button 
+              className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+              onClick={() => console.log('Info button clicked')}
+            >
+              <InformationCircleIcon className="w-5 h-5 text-black" />
             </button>
           </div>
         </div>
@@ -68,7 +71,10 @@ export default function ChatWidget() {
               </div>
               
               {/* Start Button - Right */}
-              <button className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-50 transition-colors flex items-center space-x-2">
+              <button 
+                className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-50 transition-colors flex items-center space-x-2 cursor-pointer"
+                onClick={() => console.log('Start button clicked')}
+              >
                 <span className="font-semibold">Start</span>
                 <ArrowRightIcon className="w-5 h-5" />
               </button>
