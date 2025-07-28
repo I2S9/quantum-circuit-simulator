@@ -17,7 +17,7 @@ export default function ChatPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-lg p-4 mb-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between relative">
             {/* Logo and Qubitly - Left */}
             <button 
               className="flex items-center space-x-1 cursor-pointer hover:opacity-80 transition-opacity"
@@ -33,7 +33,7 @@ export default function ChatPage() {
             </button>
             
             {/* Page Title - Center */}
-            <div className="flex items-center justify-center">
+            <div className="absolute left-1/2 transform -translate-x-1/2">
               <h1 className="text-xl font-medium text-gray-600">QubitlyAi Chat</h1>
             </div>
             
@@ -67,9 +67,9 @@ export default function ChatPage() {
             {/* Message */}
             <div className="flex-1">
               <p className="text-gray-800 text-lg leading-tight font-sans">
-                Hi, I'm QubitlyAi! I'm here to help you explore and learn about quantum computing. 
-                Whether you're a beginner or advanced, I can answer your questions about quantum 
-                algorithms, quantum gates, quantum circuits, and much more. Let's dive into the 
+                Hi, I&apos;m QubitlyAi! I&apos;m here to help you explore and learn about quantum computing. 
+                Whether you&apos;re a beginner or advanced, I can answer your questions about quantum 
+                algorithms, quantum gates, quantum circuits, and much more. Let&apos;s dive into the 
                 fascinating world of quantum computing together! Choose your preferred chat option below.
               </p>
             </div>
@@ -103,7 +103,7 @@ export default function ChatPage() {
                 <div className="flex-1 text-left">
                   <h3 className="font-bold text-gray-800 text-base">Suggested Prompts</h3>
                   <p className="text-gray-600 text-xs mt-0.5">
-                    If you don't feel like typing, this option allows you to select prompts.
+                    If you don&apos;t feel like typing, this option allows you to select prompts.
                   </p>
                 </div>
               </div>

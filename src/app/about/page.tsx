@@ -15,7 +15,7 @@ export default function AboutPage() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-lg p-4 mb-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between relative">
             {/* Logo and Qubitly - Left */}
             <button 
               className="flex items-center space-x-1 cursor-pointer hover:opacity-80 transition-opacity"
@@ -31,7 +31,7 @@ export default function AboutPage() {
             </button>
             
             {/* Page Title - Center */}
-            <div className="flex items-center justify-center">
+            <div className="absolute left-1/2 transform -translate-x-1/2">
               <h1 className="text-xl font-medium text-gray-600">About Us</h1>
             </div>
             
