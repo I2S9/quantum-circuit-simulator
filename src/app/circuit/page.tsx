@@ -61,7 +61,8 @@ c[4] = measure q[4];`);
   };
 
   const generateQasmCode = () => {
-    let code = "OPENQASM 3;\ninclude 'customgates.inc';\n\n";
+    let code = "OPENQASM 3;\n\n";
+    code += 'include "stdgates.inc";\n\n';
     code += `bit[${qubitCount}] c;\n`;
     code += `qubit[${qubitCount}] q;\n\n`;
 

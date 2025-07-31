@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 from qiskit_aer import Aer  # ✅ Import from qiskit_aer directly
 from qiskit import transpile
 from qiskit.qasm3 import loads
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/simulate", methods=["POST"])
 def simulate():
