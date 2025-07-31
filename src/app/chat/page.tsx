@@ -95,7 +95,10 @@ export default function ChatPage() {
             </button>
 
             {/* Suggested Prompts Button */}
-            <button className="bg-white border border-gray-300 rounded-3xl p-4 cursor-pointer flex-1">
+            <button 
+              className="bg-white border border-gray-300 rounded-3xl p-4 cursor-pointer flex-1"
+              onClick={() => router.push('/chat/prompts')}
+            >
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-sky-400 rounded-lg flex items-center justify-center flex-shrink-0">
                   <SparklesIcon className="w-6 h-6 text-white" />

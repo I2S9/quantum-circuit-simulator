@@ -257,15 +257,10 @@ c[4] = measure q[4];`);
         {/* Main Circuit Interface */}
         <div className="grid grid-cols-12 gap-6 mb-6">
           {/* Left Panel: Gates */}
-          <div className="bg-white border border-gray-200 rounded-lg shadow-sm col-span-3 gates-panel">
+          <div className="bg-white border border-gray-200 rounded-lg shadow-sm col-span-2 gates-panel">
             {/* Gates Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-              <ChevronLeftIcon className="w-4 h-4 text-gray-600" />
+            <div className="flex items-center justify-center p-4 border-b border-gray-200 bg-white">
               <h2 className="font-semibold text-gray-800">Quantum Gates</h2>
-              <div className="flex items-center space-x-2">
-                <Squares2X2Icon className="w-4 h-4 text-gray-600" />
-                <InformationCircleIcon className="w-4 h-4 text-gray-600" />
-              </div>
             </div>
 
             {/* Gates Grid */}
@@ -290,7 +285,7 @@ c[4] = measure q[4];`);
           </div>
 
           {/* Middle Panel: Quantum Circuit */}
-          <div className="bg-white border border-gray-200 rounded-lg shadow-sm col-span-6 circuit-area">
+          <div className="bg-white border border-gray-200 rounded-lg shadow-sm col-span-7 circuit-area">
             {/* Circuit Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200">
               <h2 className="font-semibold text-gray-800">Quantum Circuit</h2>
