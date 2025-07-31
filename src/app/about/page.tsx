@@ -69,7 +69,7 @@ export default function AboutPage() {
               {/* Start Button - Right */}
               <button 
                 className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-50 transition-colors flex items-center space-x-2 cursor-pointer"
-                onClick={() => router.push('/chat')}
+                onClick={() => router.push('/circuit')}
               >
                 <span className="font-semibold">Start</span>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">

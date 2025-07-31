@@ -27,7 +27,7 @@ interface Article {
 
 export default function InfoPage() {
   const router = useRouter();
-  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [selectedTopic, setSelectedTopic] = useState<string>('fundamentals');
 
   const topics = [
     {
@@ -74,24 +74,24 @@ export default function InfoPage() {
          url: 'https://www.scientificamerican.com/article/quantum-entanglement/',
          description: 'How quantum entanglement works and its implications'
        },
-       {
-         id: '3',
-         title: 'The Quantum Computing Podcast',
-         source: 'MIT Technology Review',
-         type: 'podcast',
-         url: 'https://www.technologyreview.com/topic/quantum-computing/',
-         description: 'Weekly discussions on quantum computing basics'
-       }
+               {
+          id: '3',
+          title: 'The Year in Quantum: Preparing for the quantum revolution',
+          source: 'MIT Open Learning',
+          type: 'podcast',
+          url: 'https://medium.com/open-learning/the-year-in-quantum-preparing-for-the-quantum-revolution-9b81ae18ec6b',
+          description: 'Weekly discussions on quantum computing basics'
+        }
      ],
      technology: [
-       {
-         id: '4',
-         title: 'IBM\'s Latest Quantum Processor',
-         source: 'Wired',
-         type: 'article',
-         url: 'https://www.wired.com/story/ibm-quantum-computing-processor/',
-         description: 'Inside IBM\'s newest quantum computing breakthrough'
-       },
+               {
+          id: '4',
+          title: 'IBM Quantum Platform',
+          source: 'IBM',
+          type: 'article',
+          url: 'https://www.ibm.com/quantum',
+          description: 'Access the world\'s largest fleet of utility-scale quantum computers'
+        },
        {
          id: '5',
          title: 'Google Quantum Supremacy',
@@ -136,14 +136,14 @@ export default function InfoPage() {
        }
      ],
      research: [
-       {
-         id: '10',
-         title: 'Error Correction Breakthrough',
-         source: 'Science',
-         type: 'article',
-         url: 'https://www.science.org/doi/10.1126/science.abc5793',
-         description: 'New quantum error correction methods'
-       },
+               {
+          id: '10',
+          title: 'IBM Says It\'s Cracked Quantum Error Correction',
+          source: 'IEEE Spectrum',
+          type: 'article',
+          url: 'https://spectrum.ieee.org/ibm-quantum-error-correction-starling',
+          description: 'New quantum error correction methods'
+        },
        {
          id: '11',
          title: 'Topological Quantum Computing',
@@ -251,7 +251,7 @@ export default function InfoPage() {
              {topics.map((topic) => (
                <button
                  key={topic.id}
-                 onClick={() => setSelectedTopic(selectedTopic === topic.id ? null : topic.id)}
+                                   onClick={() => setSelectedTopic(topic.id)}
                                    className={`px-4 py-2 rounded-full border-2 transition-all duration-200 ${
                     selectedTopic === topic.id
                       ? 'border-sky-400 bg-sky-400 text-white'
