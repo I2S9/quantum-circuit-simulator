@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import {
   ChevronLeftIcon,
   Squares2X2Icon,
@@ -15,6 +17,7 @@ import {
 import OnboardingTour from "@/components/OnboardingTour";
 
 export default function CircuitPage() {
+  const router = useRouter();
   const [qasmCode, setQasmCode] = useState(`OPENQASM 3;
 include 'customgates.inc';
 bit[5] c;
@@ -218,26 +221,35 @@ c[4] = measure q[4];`);
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+        <div className="bg-gray-50 rounded-lg p-4 mb-6">
           <div className="flex items-center justify-between relative">
             {/* Logo and Qubitly - Left */}
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">Q</span>
-              </div>
-              <span className="font-bold text-xl text-gray-800">Qubitly</span>
-            </div>
+            <button 
+              className="flex items-center space-x-1 cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={() => router.push('/')}
+            >
+              <Image
+                src="/logo.png"
+                alt="Qubitly Logo"
+                width={40}
+                height={40}
+              />
+              <span className="font-bold text-lg text-black">Qubitly</span>
+            </button>
 
             {/* Page Title - Center */}
             <div className="absolute left-1/2 transform -translate-x-1/2">
-              <h1 className="text-xl font-semibold text-gray-700">
+              <h1 className="text-xl font-medium text-gray-600">
                 Quantum Circuit Simulator
               </h1>
             </div>
 
             {/* Info button - Right */}
-            <button className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors">
-              <InformationCircleIcon className="w-5 h-5 text-gray-600" />
+            <button 
+              className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+              onClick={() => router.push('/info')}
+            >
+              <InformationCircleIcon className="w-5 h-5 text-black" />
             </button>
           </div>
         </div>
@@ -247,7 +259,7 @@ c[4] = measure q[4];`);
           {/* Left Panel: Gates */}
           <div className="bg-white border border-gray-200 rounded-lg shadow-sm col-span-3 gates-panel">
             {/* Gates Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-sky-50 to-blue-50">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
               <ChevronLeftIcon className="w-4 h-4 text-gray-600" />
               <h2 className="font-semibold text-gray-800">Quantum Gates</h2>
               <div className="flex items-center space-x-2">
@@ -286,7 +298,7 @@ c[4] = measure q[4];`);
                 <button
                   onClick={simulateCircuit}
                   disabled={isSimulating}
-                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-lg hover:from-sky-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm simulate-button"
+                  className="flex items-center space-x-2 px-4 py-2 bg-sky-400 text-white rounded-lg hover:bg-sky-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm simulate-button"
                 >
                   <PlayIcon className="w-4 h-4" />
                   <span>{isSimulating ? "Simulating..." : "Simulate"}</span>
@@ -377,7 +389,7 @@ c[4] = measure q[4];`);
                       ))}
 
                       {/* Measurement icon at the end */}
-                      <div className="absolute right-2 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-sky-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm">
+                      <div className="absolute right-2 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-sky-400 rounded-full flex items-center justify-center shadow-sm">
                         <div className="w-3 h-3 bg-white rounded-full"></div>
                       </div>
                     </div>
@@ -391,7 +403,7 @@ c[4] = measure q[4];`);
                   Qubits:
                 </span>
                 <button
-                  className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors shadow-sm"
+                  className="w-8 h-8 bg-sky-400 text-white rounded-full flex items-center justify-center hover:bg-sky-500 transition-colors shadow-sm"
                   onClick={() =>
                     setQubitCount((prev) => Math.min(prev + 1, 10))
                   }
@@ -414,7 +426,7 @@ c[4] = measure q[4];`);
           {/* Right Panel: QASM Code */}
           <div className="bg-white border border-gray-200 rounded-lg shadow-sm col-span-3 qasm-panel">
             {/* QASM Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-green-50 to-emerald-50">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
               <h2 className="font-semibold text-gray-800">QASM Code</h2>
               <QuestionMarkCircleIcon className="w-4 h-4 text-gray-600" />
             </div>
