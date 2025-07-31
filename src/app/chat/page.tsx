@@ -80,7 +80,10 @@ export default function ChatPage() {
         <div className="fixed bottom-32 left-1/2 transform -translate-x-1/2 w-full max-w-6xl px-8">
           <div className="flex space-x-6 w-full">
             {/* Live Chat Button */}
-            <button className="bg-white border border-gray-300 rounded-3xl p-4 cursor-pointer flex-1">
+            <button 
+              className="bg-white border border-gray-300 rounded-3xl p-4 cursor-pointer flex-1"
+              onClick={() => router.push('/chat/live')}
+            >
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-sky-400 rounded-lg flex items-center justify-center flex-shrink-0">
                   <ChatBubbleLeftRightIcon className="w-6 h-6 text-white" />
