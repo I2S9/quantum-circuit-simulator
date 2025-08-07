@@ -1,0 +1,5 @@
+flask==3.0.3
+flask-cors==4.0.1
+qiskit==2.1.1
+qiskit-aer==0.15.1
+qiskit_qasm3_import==0.6.0

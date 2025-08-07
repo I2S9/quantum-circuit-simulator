@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import {
@@ -15,6 +15,9 @@ import {
   EllipsisVerticalIcon,
 } from "@heroicons/react/24/outline";
 import OnboardingTour from "@/components/OnboardingTour";
+import dynamic from 'next/dynamic';
+
+const Histogram = dynamic(() => import('./Histogram'), { ssr: false });
 
 export default function CircuitPage() {
   const router = useRouter();
@@ -37,8 +40,11 @@ c[4] = measure q[4];`);
   const [simulationResults, setSimulationResults] = useState<{
     [key: string]: number;
   }>({});
+  const [usePercentage, setUsePercentage] = useState(true);
   const [isSimulating, setIsSimulating] = useState(false);
   const [isClient, setIsClient] = useState(false); // For hydration fix
+  const [aiExplanation, setAiExplanation] = useState<string>('');
+  const [isExplaining, setIsExplaining] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -74,12 +80,37 @@ c[4] = measure q[4];`);
       if (qubitGates) {
         qubitGates.forEach((gateInfo) => {
           let gateName = gateInfo.gate.toLowerCase();
-          // Handle special gate names
+          // Handle special gate names and parameters
           if (gateName === "t†") gateName = "tdg";
           if (gateName === "√x") gateName = "sx";
-          if (gateName === "√z") gateName = "sz";
-          if (gateName === "s") gateName = "s";
+          if (gateName === "√z") gateName = "s"; // S gate is sqrt(Z)
           if (gateName === "i") gateName = "id";
+
+          // Parameterized single-qubit gates: default angles
+          if (gateName === "rx") {
+            code += `rx(pi/2) q[${qubitIndex}];\n`;
+            return;
+          }
+          if (gateName === "ry") {
+            code += `ry(pi/2) q[${qubitIndex}];\n`;
+            return;
+          }
+          if (gateName === "rz") {
+            code += `rz(pi/2) q[${qubitIndex}];\n`;
+            return;
+          }
+          if (gateName === "p") {
+            code += `p(pi/4) q[${qubitIndex}];\n`;
+            return;
+          }
+
+          // Two-qubit gates currently need explicit target/control, which the UI doesn't collect yet.
+          // To avoid invalid QASM, we skip emitting them for now.
+          const twoQ = new Set(["cx", "cy", "cz", "swap", "cswap", "ch", "cp"]);
+          if (twoQ.has(gateName)) {
+            return;
+          }
+
           code += `${gateName} q[${qubitIndex}];\n`;
         });
       }
@@ -99,7 +130,7 @@ c[4] = measure q[4];`);
     const code = generateQasmCode();
 
     try {
-      const res = await fetch("http://localhost:5000/simulate", {
+      const res = await fetch("/api/simulate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ qasm: code }),
@@ -108,20 +139,8 @@ c[4] = measure q[4];`);
       const data = (await res.json()) as { [key: string]: number };
 
       if (res.ok) {
-        const normalized: { [key: string]: number } = {};
-        const values = Object.values(data);
-
-        // Type guard to ensure values are numbers
-        if (values.every((val) => typeof val === "number")) {
-          const total = values.reduce((sum, val) => sum + val, 0);
-
-          for (const [key, val] of Object.entries(data)) {
-            normalized[key] = Math.round((val / total) * 100);
-          }
-          setSimulationResults(normalized);
-        } else {
-          throw new Error("Invalid response format");
-        }
+        // Keep raw counts; we'll compute percentages on the fly for the chart
+        setSimulationResults(data);
       } else {
         alert("Simulation failed: " + data.error);
       }
@@ -129,6 +148,57 @@ c[4] = measure q[4];`);
       alert("Server error: " + err);
     } finally {
       setIsSimulating(false);
+    }
+  };
+
+  const chartData = useMemo(() => {
+    const n = Math.max(qubitCount, 1);
+    const allStates: string[] = Array.from({ length: 1 << n }, (_, i) => i.toString(2).padStart(n, '0'));
+    const total = Object.values(simulationResults).reduce((s, v) => s + v, 0);
+    const labels = allStates;
+    const values = allStates.map((s) => {
+      const v = simulationResults[s] ?? 0;
+      return usePercentage && total > 0 ? Math.round((v / total) * 100) : v;
+    });
+    const yLabel = usePercentage ? 'Percentage (%)' : 'Counts (shots)';
+    const yMax = usePercentage ? 100 : 200; // backend uses 200 shots
+    return { labels, values, yLabel, total, yMax };
+  }, [simulationResults, usePercentage, qubitCount]);
+
+  const explainResultsWithAI = async () => {
+    if (Object.keys(simulationResults).length === 0) return;
+    setIsExplaining(true);
+    setAiExplanation('');
+
+    const code = generateQasmCode();
+    const distribution = Object.entries(simulationResults)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([state, prob]) => `${state}: ${prob}%`)
+      .join(', ');
+
+    const prompt = `You are a quantum computing assistant. In plain text (no markdown), explain the measurement results of the following quantum circuit. Provide a concise, clear explanation with short paragraphs and blank lines between them.
+
+QASM:
+${code}
+
+Results (percentages): ${distribution}`;
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      });
+      const data = await res.json();
+      if (res.ok && data?.text) {
+        setAiExplanation(data.text);
+      } else {
+        setAiExplanation(data?.error || 'Unable to get AI explanation.');
+      }
+    } catch (e) {
+      setAiExplanation('Network error while contacting the AI service.');
+    } finally {
+      setIsExplaining(false);
     }
   };
 
@@ -210,7 +280,11 @@ c[4] = measure q[4];`);
       case "⋮":
         return <EllipsisVerticalIcon className="w-6 h-6 text-gray-500" />;
       default:
-        return <span>{gate}</span>;
+        return (
+          <span className="italic font-serif text-sm leading-none">
+            {gate}
+          </span>
+        );
     }
   };
 
@@ -474,28 +548,16 @@ c[4] = measure q[4];`);
           {/* Histogram Chart */}
           <div className="p-6">
             {Object.keys(simulationResults).length > 0 ? (
-              <div className="h-64 flex items-end justify-center space-x-4 histogram-chart">
-                {Object.entries(simulationResults)
-                  .sort(([a], [b]) => a.localeCompare(b))
-                  .map(([state, probability], index) => (
-                    <div
-                      key={state}
-                      className="flex flex-col items-center space-y-2"
-                    >
-                      <div className="text-xs font-medium text-gray-600">
-                        {probability}%
-                      </div>
-                      <div
-                        className="bg-gradient-to-t from-sky-500 to-blue-400 rounded-t-lg shadow-sm min-h-[4px] w-16 transition-all duration-500"
-                        style={{
-                          height: `${Math.max((probability / 100) * 200, 4)}px`,
-                        }}
-                      />
-                      <div className="text-xs font-mono text-gray-700 transform -rotate-45 origin-center">
-                        |{state}⟩
-                      </div>
-                    </div>
-                  ))}
+              <div>
+                <div className="flex items-center justify-end mb-2">
+                  <label className="text-sm text-gray-700 mr-2">Use percentage scale</label>
+                  <input
+                    type="checkbox"
+                    checked={usePercentage}
+                    onChange={(e) => setUsePercentage(e.target.checked)}
+                  />
+                </div>
+                <Histogram labels={chartData.labels} values={chartData.values} yLabel={chartData.yLabel} yMax={chartData.yMax} />
               </div>
             ) : (
               <div className="h-64 flex items-center justify-center text-gray-500">
@@ -511,6 +573,23 @@ c[4] = measure q[4];`);
               </div>
             )}
           </div>
+
+            {/* AI Explanation */}
+            <div className="border-t border-gray-200 p-6">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="font-semibold text-gray-800">AI Insight</h3>
+                <button
+                  onClick={explainResultsWithAI}
+                  disabled={isExplaining || Object.keys(simulationResults).length === 0}
+                  className="px-3 py-1.5 text-sm bg-sky-400 text-white rounded-md hover:bg-sky-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isExplaining ? 'Analyzing...' : 'Explain with AI'}
+                </button>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-4 min-h-[60px] whitespace-pre-wrap text-gray-800">
+                {aiExplanation || 'Run a simulation, then click "Explain with AI" to get an interpretation.'}
+              </div>
+            </div>
         </div>
       </div>
     </div>

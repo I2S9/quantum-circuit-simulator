@@ -24,6 +24,14 @@ OPENAI_API_KEY=sk-...
 
 The chat API at `POST /api/chat` uses this key and the `openai` SDK.
 
+If you run the Qiskit simulator backend (Flask app in `src/backend/qiskit_api.py`) separately, also set:
+
+```
+SIMULATOR_URL=http://localhost:5000
+```
+
+Then the app will call `POST /api/simulate` which proxies to your simulator.
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
