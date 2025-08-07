@@ -17,6 +17,29 @@ interface Message {
   timestamp: Date;
 }
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function renderAssistantText(raw: string) {
+  // Escape HTML, convert **bold** to <strong>, preserve newlines and paragraph breaks
+  const escaped = escapeHtml(raw);
+  const withBold = escaped.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  const paragraphs = withBold.split(/\n{2,}/);
+  return (
+    <div className="space-y-2">
+      {paragraphs.map((p, idx) => (
+        <p key={idx} dangerouslySetInnerHTML={{ __html: p.replace(/\n/g, '<br/>') }} />
+      ))}
+    </div>
+  );
+}
+
 function LiveChatContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -117,7 +140,7 @@ function LiveChatContent() {
 
   return (
     <div className="min-h-screen bg-white p-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto pb-56">
         {/* Header */}
         <div className="bg-white rounded-lg p-4 mb-6">
           <div className="flex items-center justify-between relative">
@@ -200,7 +223,11 @@ function LiveChatContent() {
                       ? 'bg-sky-400 text-white' 
                       : 'bg-white border border-gray-200 text-gray-800'
                   }`}>
-                    <p className="text-sm leading-relaxed">{message.text}</p>
+                    {message.isUser ? (
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</p>
+                    ) : (
+                      <div className="text-sm leading-relaxed">{renderAssistantText(message.text)}</div>
+                    )}
                     <p className={`text-xs mt-1 ${
                       message.isUser ? 'text-sky-100' : 'text-gray-500'
                     }`}>
