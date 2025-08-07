@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import { 
   PaperAirplaneIcon, 
@@ -17,7 +17,7 @@ interface Message {
   timestamp: Date;
 }
 
-export default function LiveChatPage() {
+function LiveChatContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [messages, setMessages] = useState<Message[]>([]);
@@ -271,3 +271,17 @@ export default function LiveChatPage() {
     </div>
   );
 } 
+
+export default function LiveChatPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-white p-8">
+          <div className="max-w-6xl mx-auto">Loading chat…</div>
+        </div>
+      }
+    >
+      <LiveChatContent />
+    </Suspense>
+  );
+}
