@@ -8,7 +8,7 @@ import {
   ChatBubbleLeftRightIcon,
   ArrowLeftIcon
 } from '@heroicons/react/24/outline';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Message {
   id: string;
@@ -19,10 +19,18 @@ interface Message {
 
 export default function LiveChatPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const suggestedPrompts = [
+    'Explain quantum superposition in simple terms',
+    'How does a Hadamard gate affect a |0> qubit?',
+    "What's the intuition behind entanglement?",
+    "How does Grover's algorithm achieve quadratic speedup?",
+    'What is the role of measurement in quantum circuits?'
+  ];
 
   // Initialize messages after component mounts to avoid hydration mismatch
   useEffect(() => {
@@ -36,6 +44,19 @@ export default function LiveChatPage() {
     ]);
   }, []);
 
+  // If a suggested prompt comes via query param, prefill and auto-send
+  useEffect(() => {
+    const suggested = searchParams.get('prompt');
+    if (suggested && suggested.trim()) {
+      setInputMessage(suggested);
+      // Auto-send shortly after mount to let state settle
+      const timer = setTimeout(() => {
+        handleSendMessage(suggested);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -44,12 +65,13 @@ export default function LiveChatPage() {
     scrollToBottom();
   }, [messages]);
 
-  const handleSendMessage = async () => {
-    if (!inputMessage.trim()) return;
+  const handleSendMessage = async (overrideText?: string) => {
+    const textToSend = (overrideText ?? inputMessage).trim();
+    if (!textToSend) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      text: inputMessage,
+      text: textToSend,
       isUser: true,
       timestamp: new Date()
     };
@@ -58,17 +80,32 @@ export default function LiveChatPage() {
     setInputMessage('');
     setIsTyping(true);
 
-    // Simulate AI response (in a real app, this would be an API call)
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: textToSend })
+      });
+      const data = await response.json();
+      const aiText = data?.text || data?.error || 'Sorry, something went wrong.';
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Thank you for your question! I'm here to help you learn about quantum computing. This is a simulated response - in a real implementation, this would connect to an AI service to provide detailed answers about quantum computing topics.",
+        text: aiText,
         isUser: false,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, aiResponse]);
+    } catch (e) {
+      const aiResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        text: 'Network error while contacting the AI service.',
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, aiResponse]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -110,6 +147,24 @@ export default function LiveChatPage() {
             >
               <InformationCircleIcon className="w-5 h-5 text-black" />
             </button>
+          </div>
+        </div>
+
+        {/* Suggested Prompts */}
+        <div className="bg-white p-4 rounded-lg mb-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-2 text-sm text-gray-600">Suggested prompts</div>
+            <div className="flex flex-wrap gap-2">
+              {suggestedPrompts.map((p, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSendMessage(p)}
+                  className="px-3 py-1.5 text-sm rounded-full border border-gray-200 hover:bg-sky-50 hover:border-sky-200 text-gray-700"
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -204,7 +259,7 @@ export default function LiveChatPage() {
             
             {/* Send Button */}
             <button
-              onClick={handleSendMessage}
+              onClick={() => handleSendMessage()}
               disabled={!inputMessage.trim() || isTyping}
               className="w-12 h-12 bg-sky-400 hover:bg-sky-500 disabled:bg-sky-400 disabled:cursor-not-allowed rounded-full flex items-center justify-center transition-colors"
             >

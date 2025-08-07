@@ -94,8 +94,8 @@ export default function PromptsPage() {
   ];
 
   const handlePromptClick = (prompt: string) => {
-    // Navigate to chat with the selected prompt
-    router.push(`/chat?prompt=${encodeURIComponent(prompt)}`);
+    // Navigate directly to live chat with the selected prompt
+    router.push(`/chat/live?prompt=${encodeURIComponent(prompt)}`);
   };
 
   return (
