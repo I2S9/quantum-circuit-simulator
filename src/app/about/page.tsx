@@ -46,33 +46,49 @@ export default function AboutPage() {
         </div>
 
         {/* Main Chat Area */}
-        <div className="bg-gradient-to-r from-sky-400 to-blue-600 rounded-3xl p-6 max-w-[1100px] mx-auto mb-8">
-          <div className="flex flex-col items-center space-y-6">
+        <div className="relative rounded-3xl p-8 py-12 max-w-[1100px] mx-auto mb-8 overflow-hidden">
+          {/* Video Background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover rounded-3xl"
+          >
+            <source src="/quantum-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-3xl"></div>
+          
+          {/* Content */}
+          <div className="relative z-10 flex flex-col items-center justify-center h-full">
             {/* Icon Circle */}
-            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center">
+            <div className="w-28 h-28 bg-white rounded-full flex items-center justify-center">
               <Image
                 src="/logo.png"
                 alt="Qubitly Logo"
-                width={80}
-                height={80}
+                width={90}
+                height={90}
                 className="rounded-full"
               />
             </div>
             
             {/* Text and Button Container */}
-            <div className="flex items-center justify-between w-full mt-4">
+            <div className="flex items-center justify-between w-full mt-8">
               {/* Text - Left */}
               <div className="text-white">
-                <h2 className="text-2xl font-medium">Qubitly helps you learn quantum computing!</h2>
+                <h2 className="text-3xl font-medium">Qubitly helps you learn quantum computing!</h2>
               </div>
               
               {/* Start Button - Right */}
               <button 
-                className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-50 transition-colors flex items-center space-x-2 cursor-pointer"
+                className="bg-white text-black px-8 py-4 rounded-full hover:bg-gray-50 transition-colors flex items-center space-x-2 cursor-pointer"
                 onClick={() => router.push('/circuit')}
               >
-                <span className="font-semibold">Start</span>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <span className="font-semibold text-lg">Start</span>
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </button>
