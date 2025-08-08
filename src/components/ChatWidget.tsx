@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useState } from 'react';
 import {
   PaperAirplaneIcon,
   InformationCircleIcon,
@@ -10,9 +11,25 @@ import {
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/navigation';
+import FAQ from './FAQ';
 
 export default function ChatWidget() {
   const router = useRouter();
+  const [inputMessage, setInputMessage] = useState('');
+
+  const handleSendMessage = () => {
+    if (inputMessage.trim()) {
+      // Redirect to live chat with the message as a query parameter
+      router.push(`/chat/live?prompt=${encodeURIComponent(inputMessage.trim())}`);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
 
   return (
     <div className="h-screen bg-white p-8 overflow-y-auto">
@@ -40,10 +57,16 @@ export default function ChatWidget() {
                 <input
                   type="text"
                   placeholder="Ask any question..."
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  onKeyPress={handleKeyPress}
                   className="w-[750px] px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-sky-400"
                 />
               </div>
-              <button className="w-10 h-10 bg-sky-400 rounded-full flex items-center justify-center hover:bg-sky-500 transition-colors">
+              <button 
+                className="w-10 h-10 bg-sky-400 rounded-full flex items-center justify-center hover:bg-sky-500 transition-colors"
+                onClick={handleSendMessage}
+              >
                 <PaperAirplaneIcon className="w-5 h-5 text-white" />
               </button>
             </div>
@@ -147,7 +170,7 @@ export default function ChatWidget() {
                 <ChatBubbleLeftRightIcon className="w-6 h-6 text-white" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-gray-800 text-lg mb-2">AskQ Your Quantum AI Assistant</h3>
+                <h3 className="font-bold text-gray-800 text-lg mb-2">AskQ — Your Quantum AI Assistant</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Chat with an AI-powered assistant to learn quantum concepts, get circuit suggestions, or debug your designs in real time.
                 </p>
@@ -187,27 +210,8 @@ export default function ChatWidget() {
           </div>
         </div>
 
-                {/* FAQ Section */}
-        <div className="max-w-[1100px] mx-auto mt-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">FAQ</h2>
-          <div className="space-y-6">
-            {/* FAQ Item 1 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6">
-              <h3 className="font-bold text-gray-800 text-lg mb-3">What is quantum computing?</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Quantum computing uses quantum mechanical phenomena to process information. Unlike classical computers that use bits (0 or 1), quantum computers use quantum bits (qubits) that can exist in multiple states simultaneously.
-              </p>
-            </div>
-
-            {/* FAQ Item 2 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6">
-              <h3 className="font-bold text-gray-800 text-lg mb-3">Is Qubitly free to use?</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Yes! Qubitly is completely free and designed for educational purposes. We believe that quantum computing education should be accessible to everyone.
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* FAQ Section */}
+        <FAQ />
       </div>
     </div>
   );
