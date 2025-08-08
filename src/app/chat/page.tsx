@@ -51,27 +51,24 @@ export default function ChatPage() {
         <div className="flex flex-col space-y-8 px-8">
           {/* Top: Welcome Message */}
           <div className="flex items-center space-x-4">
-            {/* Avatar - Rond bleu plus gros */}
-            <div className="w-20 h-20 bg-sky-400 rounded-full flex items-center justify-center flex-shrink-0">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                <Image
-                  src="/logo.png"
-                  alt="Qubitly Logo"
-                  width={48}
-                  height={48}
-                  className="rounded-full"
-                />
-              </div>
+            {/* Avatar - Cercle transparent avec bordures gris claires */}
+            <div className="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+              <Image
+                src="/logo.png"
+                alt="Qubitly Logo"
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
             </div>
             
             {/* Message */}
             <div className="flex-1">
-              <p className="text-gray-800 text-lg leading-tight font-sans">
-                Hi, I&apos;m QubitlyAi! I&apos;m here to help you explore and learn about quantum computing. 
-                Whether you&apos;re a beginner or advanced, I can answer your questions about quantum 
-                algorithms, quantum gates, quantum circuits, and much more. Let&apos;s dive into the 
-                fascinating world of quantum computing together! Choose your preferred chat option below.
-              </p>
+              <div className="bg-transparent border border-gray-200 rounded-xl p-4">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  Hi, I'm QubitlyAi! I'm here to help you explore and learn about quantum computing. Whether you're a beginner or advanced, I can answer your questions about quantum algorithms, quantum gates, quantum circuits, and much more. Let's dive into the fascinating world of quantum computing together! Choose your preferred chat option below.
+                </p>
+              </div>
             </div>
           </div>
         </div>

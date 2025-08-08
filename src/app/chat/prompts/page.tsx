@@ -135,17 +135,15 @@ export default function PromptsPage() {
 
         {/* Welcome Message */}
         <div className="flex items-center space-x-4 mb-8">
-          {/* Avatar */}
-          <div className="w-20 h-20 bg-sky-400 rounded-full flex items-center justify-center flex-shrink-0">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-              <Image
-                src="/logo.png"
-                alt="Qubitly Logo"
-                width={48}
-                height={48}
-                className="rounded-full"
-              />
-            </div>
+          {/* Avatar - Cercle transparent avec bordures gris claires */}
+          <div className="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+            <Image
+              src="/logo.png"
+              alt="Qubitly Logo"
+              width={48}
+              height={48}
+              className="rounded-full"
+            />
           </div>
           
           {/* Message */}
