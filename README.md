@@ -1,54 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Qubitly
+
+**Your comprehensive quantum computing learning platform**
+
+> **Qubitly is an interactive web application designed to help users learn and explore quantum computing concepts through AI-powered conversations, visual circuit building, and comprehensive educational resources.
+
+## Features
+
+- **QubitlyAi Chat** - AI-powered quantum computing assistant for real-time Q&A
+- **Suggested Prompts** - Curated prompts for focused learning on specific topics
+- **Quantum Circuit Builder** - Visual drag-and-drop interface for building quantum circuits
+- **Learning Roadmap** - Structured learning path from beginner to advanced quantum computing
+- **Educational Resources** - Latest articles, research papers, and learning materials
+- **Modern UI/UX** - Clean, intuitive interface with responsive design
+
+## Technologies Used
+
+- **Frontend**: Next.js 14, React, TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Heroicons
+- **AI Integration**: OpenAI API
+- **Quantum Simulation**: Qiskit (Python backend)
+- **Deployment**: Vercel
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- npm, yarn, pnpm, or bun
+- OpenAI API key (for AI chat functionality)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/quantum-circuit-simulator.git
+cd quantum-circuit-simulator
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Create a `.env.local` file in the project root:
+```env
+OPENAI_API_KEY=sk-your-openai-api-key-here
+```
+
+4. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-### Environment variables
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-Create a `.env.local` at the project root with your OpenAI API key:
+### Optional: Quantum Simulator Backend
 
+If you want to run the Qiskit simulator backend separately:
+
+1. Navigate to the backend directory:
+```bash
+cd src/backend
 ```
-OPENAI_API_KEY=sk-...
+
+2. Install Python dependencies:
+```bash
+pip install -r requirements.txt
 ```
 
-The chat API at `POST /api/chat` uses this key and the `openai` SDK.
-
-If you run the Qiskit simulator backend (Flask app in `src/backend/qiskit_api.py`) separately, also set:
-
+3. Run the Flask server:
+```bash
+python qiskit_api.py
 ```
+
+4. Add the simulator URL to your `.env.local`:
+```env
 SIMULATOR_URL=http://localhost:5000
 ```
 
-Then the app will call `POST /api/simulate` which proxies to your simulator.
+## Project Structure
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+quantum-circuit-simulator/
+├── src/
+│   ├── app/                 # Next.js app router pages
+│   │   ├── chat/           # Chat functionality
+│   │   ├── circuit/        # Quantum circuit builder
+│   │   ├── info/           # Educational resources
+│   │   └── api/            # API routes
+│   ├── components/         # Reusable React components
+│   └── backend/            # Python Qiskit backend
+├── public/                 # Static assets
+└── README.md
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+We welcome contributions! Please feel free to submit issues and pull requests.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
