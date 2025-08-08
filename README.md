@@ -2,7 +2,7 @@
 
 **Your comprehensive quantum computing learning platform**
 
-> **Qubitly is an interactive web application designed to help users learn and explore quantum computing concepts through AI-powered conversations, visual circuit building, and comprehensive educational resources.
+> Qubitly is an interactive web application designed to help users learn and explore quantum computing concepts through AI-powered conversations, visual circuit building, and comprehensive educational resources.
 
 ## Features
 
