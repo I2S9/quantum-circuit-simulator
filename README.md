@@ -11,7 +11,6 @@
 - **Quantum Circuit Builder** - Visual drag-and-drop interface for building quantum circuits
 - **Learning Roadmap** - Structured learning path from beginner to advanced quantum computing
 - **Educational Resources** - Latest articles, research papers, and learning materials
-- **Modern UI/UX** - Clean, intuitive interface with responsive design
 
 ## Technologies Used
 
@@ -34,7 +33,7 @@
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/quantum-circuit-simulator.git
+git clone https://github.com/I2S9/quantum-circuit-simulator.git
 cd quantum-circuit-simulator
 ```
 
