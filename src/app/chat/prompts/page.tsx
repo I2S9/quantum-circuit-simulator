@@ -148,7 +148,7 @@ export default function PromptsPage() {
           
           {/* Message */}
           <div className="flex-1">
-            <p className="text-gray-800 text-lg leading-tight font-sans">
+            <p className="text-gray-800 text-sm leading-tight font-sans">
               Choose a topic below to explore specific areas of quantum computing. 
               Each prompt will start a focused conversation with QubitlyAi about that subject.
             </p>
@@ -156,28 +156,28 @@ export default function PromptsPage() {
         </div>
 
         {/* Prompt Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {promptCategories.map((category, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+            <div key={index} className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition-all duration-300">
               {/* Category Header */}
-              <div className="flex items-center space-x-3 mb-4">
-                <div className={`w-10 h-10 ${category.color} rounded-lg flex items-center justify-center`}>
-                  <category.icon className="w-6 h-6 text-white" />
+              <div className="flex items-center space-x-3 mb-3">
+                <div className={`w-8 h-8 ${category.color} rounded-lg flex items-center justify-center`}>
+                  <category.icon className="w-4 h-4 text-white" />
                 </div>
-                <h3 className="font-bold text-gray-800 text-lg">{category.title}</h3>
+                <h3 className="font-bold text-gray-800 text-base">{category.title}</h3>
               </div>
               
               {/* Prompts List */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {category.prompts.map((prompt, promptIndex) => (
                   <button
                     key={promptIndex}
                     onClick={() => handlePromptClick(prompt)}
-                    className="w-full text-left p-3 bg-gray-50 rounded-lg hover:bg-sky-50 hover:border-sky-200 border border-transparent transition-all duration-200 group"
+                    className="w-full text-left p-2 bg-gray-50 rounded-lg hover:bg-sky-50 hover:border-sky-200 border border-transparent transition-all duration-200 group"
                   >
-                    <div className="flex items-start space-x-3">
-                      <SparklesIcon className="w-4 h-4 text-sky-400 mt-0.5 flex-shrink-0" />
-                      <p className="text-sm text-gray-700 group-hover:text-gray-900 leading-relaxed">
+                    <div className="flex items-start space-x-2">
+                      <SparklesIcon className="w-3 h-3 text-sky-400 mt-0.5 flex-shrink-0" />
+                      <p className="text-xs text-gray-700 group-hover:text-gray-900 leading-relaxed">
                         {prompt}
                       </p>
                     </div>
