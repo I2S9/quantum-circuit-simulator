@@ -286,18 +286,371 @@ export default function InfoPage() {
                     </div>
                   </div>
                   <p className="text-sm text-gray-600 mb-4">{article.description}</p>
-                                     <button 
-                     onClick={() => window.open(article.url, '_blank')}
-                     className="text-sky-400 hover:text-sky-500 text-sm font-medium flex items-center space-x-1"
-                   >
-                     <span>Read more</span>
-                     <ArrowRightIcon className="w-3 h-3" />
-                   </button>
+                  <button 
+                    onClick={() => window.open(article.url, '_blank')}
+                    className="text-sky-400 hover:text-sky-500 text-sm font-medium flex items-center space-x-1"
+                  >
+                    <span>Read more</span>
+                    <ArrowRightIcon className="w-3 h-3" />
+                  </button>
                 </div>
               ))}
             </div>
           </div>
         )}
+
+        {/* Quantum Computing Learning Roadmap */}
+        <div className="mb-8">
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">Quantum Computing Learning Roadmap</h3>
+            <p className="text-sm text-gray-600">
+              Master quantum computing step by step with our comprehensive learning path designed for beginners to advanced learners
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-0 top-0 bottom-0 w-2 bg-sky-400 rounded-full"></div>
+
+                         {/* Phase 1: Foundations */}
+             <div className="relative flex items-start mb-16">
+               <div className="absolute left-0 top-6 w-6 h-6 bg-sky-400 rounded-full transform -translate-x-2 border-4 border-white shadow-lg"></div>
+               <div className="ml-8 flex-1">
+                 <div className="bg-sky-50 border border-sky-200 rounded-xl p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-sky-400 rounded-xl flex items-center justify-center mr-6">
+                      <AcademicCapIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-800 mb-2">Phase 1: Foundations</h4>
+                      <p className="text-sky-600 font-medium text-sm">2-3 months • Beginner</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-white rounded-lg p-4 border border-sky-100">
+                      <h5 className="font-semibold text-gray-800 mb-3 text-base">Core Concepts</h5>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum bits (qubits) vs classical bits</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Superposition and entanglement</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum measurement and collapse</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum gates and circuits</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-white rounded-lg p-4 border border-sky-100">
+                      <h5 className="font-semibold text-gray-800 mb-3 text-base">Learning Goals</h5>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Understand quantum mechanics basics</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Build simple quantum circuits</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Use quantum simulators</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Complete hands-on exercises</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <a href="https://qiskit.org/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Qiskit</a>
+                    <a href="https://quantum-computing.ibm.com/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">IBM Quantum</a>
+                    <a href="https://www.khanacademy.org/math/linear-algebra" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Linear Algebra</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+                         {/* Phase 2: Algorithms */}
+             <div className="relative flex items-start mb-16">
+               <div className="absolute left-0 top-6 w-6 h-6 bg-sky-400 rounded-full transform -translate-x-2 border-4 border-white shadow-lg"></div>
+               <div className="ml-8 flex-1">
+                 <div className="bg-sky-50 border border-sky-200 rounded-xl p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-sky-400 rounded-xl flex items-center justify-center mr-6">
+                      <ChartBarIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-800 mb-2">Phase 2: Quantum Algorithms</h4>
+                      <p className="text-sky-600 font-medium text-sm">3-4 months • Intermediate</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div className="bg-white rounded-lg p-6 border border-sky-100">
+                      <h5 className="font-semibold text-gray-800 mb-4 text-base">Key Algorithms</h5>
+                      <ul className="text-gray-600 space-y-3 text-sm">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Deutsch-Jozsa algorithm</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Grover's search algorithm</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum Fourier Transform</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Shor's factoring algorithm</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-white rounded-lg p-6 border border-sky-100">
+                      <h5 className="font-semibold text-gray-800 mb-4 text-base">Learning Goals</h5>
+                      <ul className="text-gray-600 space-y-3 text-sm">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Implement quantum algorithms</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Understand quantum complexity</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Analyze algorithm performance</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Solve real-world problems</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <a href="https://qiskit.org/textbook/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Quantum Circuits</a>
+                    <a href="https://quantum-computing.ibm.com/composer/docs/iqx/guide/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Algorithm Design</a>
+                    <a href="https://www.cs.cmu.edu/~odonnell/quantum15/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Complexity Theory</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+                         {/* Phase 3: Advanced Topics */}
+             <div className="relative flex items-start mb-16">
+               <div className="absolute left-0 top-6 w-6 h-6 bg-sky-400 rounded-full transform -translate-x-2 border-4 border-white shadow-lg"></div>
+               <div className="ml-8 flex-1">
+                 <div className="bg-sky-50 border border-sky-200 rounded-xl p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-sky-400 rounded-xl flex items-center justify-center mr-6">
+                      <BeakerIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-800 mb-2">Phase 3: Advanced Topics</h4>
+                      <p className="text-sky-600 font-medium text-sm">4-6 months • Advanced</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div className="bg-white rounded-lg p-6 border border-sky-100">
+                      <h5 className="font-semibold text-gray-800 mb-4 text-base">Advanced Concepts</h5>
+                      <ul className="text-gray-600 space-y-3 text-sm">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum error correction</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum machine learning</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum cryptography</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum optimization</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-white rounded-lg p-6 border border-sky-100">
+                      <h5 className="font-semibold text-gray-800 mb-4 text-base">Learning Goals</h5>
+                      <ul className="text-gray-600 space-y-3 text-sm">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Research quantum applications</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Contribute to quantum projects</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Understand quantum hardware</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Explore quantum software</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <a href="https://qiskit.org/textbook/ch-quantum-hardware/error-correction-repetition-code.html" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Error Correction</a>
+                    <a href="https://qiskit.org/textbook/ch-machine-learning/machine-learning.html" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Quantum ML</a>
+                    <a href="https://arxiv.org/list/quant-ph/recent" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Research</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+                         {/* Phase 4: Specialization */}
+             <div className="relative flex items-start">
+               <div className="absolute left-0 top-6 w-6 h-6 bg-sky-400 rounded-full transform -translate-x-2 border-4 border-white shadow-lg"></div>
+               <div className="ml-8 flex-1">
+                 <div className="bg-sky-50 border border-sky-200 rounded-xl p-8">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-sky-400 rounded-xl flex items-center justify-center mr-6">
+                      <CogIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-800 mb-2">Phase 4: Specialization</h4>
+                      <p className="text-sky-600 font-medium text-sm">6+ months • Expert</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <div className="bg-white rounded-lg p-6 border border-sky-100">
+                      <h5 className="font-semibold text-gray-800 mb-4 text-base">Specializations</h5>
+                      <ul className="text-gray-600 space-y-3 text-sm">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum hardware engineering</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum software development</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum algorithm research</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum business applications</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-white rounded-lg p-6 border border-sky-100">
+                      <h5 className="font-semibold text-gray-800 mb-4 text-base">Career Paths</h5>
+                      <ul className="text-gray-600 space-y-3 text-sm">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum researcher</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum software engineer</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum consultant</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Quantum entrepreneur</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <a href="https://quantum-journal.org/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Research</a>
+                    <a href="https://github.com/Qiskit" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Development</a>
+                    <a href="https://quantum-computing.ibm.com/lab" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm font-medium hover:bg-sky-200 transition-colors">Innovation</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Resources Section */}
+          <div className="mt-16 bg-sky-400 rounded-xl p-10 border border-sky-200">
+            <h4 className="text-2xl font-bold text-white mb-8 text-center">Recommended Learning Resources</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white rounded-lg p-8 border border-sky-100">
+                <h5 className="font-bold text-gray-800 mb-4 text-lg">Books & Courses</h5>
+                <ul className="text-gray-600 space-y-3 text-base">
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://mitpress.mit.edu/books/quantum-computing-everyone" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">"Quantum Computing for Everyone" by Chris Bernhardt</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://quantum-computing.ibm.com/learn" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">IBM Quantum Experience (free courses)</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://qiskit.org/textbook/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">Qiskit Textbook (online)</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-845-quantum-complexity-theory-fall-2010/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">MIT OpenCourseWare Quantum Computing</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white rounded-lg p-8 border border-sky-100">
+                <h5 className="font-bold text-gray-800 mb-4 text-lg">Online Platforms</h5>
+                <ul className="text-gray-600 space-y-3 text-base">
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://quantum-computing.ibm.com/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">IBM Quantum Experience</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://docs.microsoft.com/en-us/azure/quantum/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">Microsoft Quantum Development Kit</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://quantumai.google/cirq" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">Google Cirq</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">Amazon Braket</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white rounded-lg p-8 border border-sky-100">
+                <h5 className="font-bold text-gray-800 mb-4 text-lg">Academic Programs</h5>
+                <ul className="text-gray-600 space-y-3 text-base">
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-845-quantum-complexity-theory-fall-2010/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">MIT Quantum Computing Course</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://quantum.stanford.edu/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">Stanford Quantum Computing</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://uwaterloo.ca/institute-for-quantum-computing/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">University of Waterloo IQC</a>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <a href="https://quantum.berkeley.edu/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 transition-colors">UC Berkeley Quantum Information</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
